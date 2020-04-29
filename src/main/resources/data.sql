@@ -1,0 +1,4 @@
+INSERT INTO stock (stock_name, quantity, unit, place, created_at, updated_at) VALUES('塩', 300, 'g', 'refrigerator1', '2020-04-30 01:23:45', '2020-04-30 01:23:45');
+INSERT INTO stock (stock_name, quantity, unit, place, created_at, updated_at) VALUES('トマト', 2, '個', 'refrigerator1', '2020-04-30 01:23:45', '2020-04-30 01:23:45');
+INSERT INTO stock (stock_name, quantity, unit, place, created_at, updated_at) VALUES('トマト', 3, '個', 'refrigerator2', '2020-04-30 01:23:45', '2020-04-30 01:23:45');
+INSERT INTO stock (stock_name, quantity, unit, place, created_at, updated_at) VALUES('ピーマン', 2, '個', 'refrigerator1', '2020-04-30 01:23:45', '2020-04-30 01:23:45');

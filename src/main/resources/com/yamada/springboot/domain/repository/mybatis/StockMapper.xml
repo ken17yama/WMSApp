@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- <mapper> -->
+<mapper namespace="com.yamada.springboot.domain.repository.mybatis.StockMapper">
+
+	<!-- マッピング定義 -->
+	<resultMap type="com.yamada.springboot.domain.model.Stock" id="stock">
+		<id column="stock_id" property="stockId" />
+		<result column="stock_name" property="stockName" />
+		<result column="quantity" property="quantity" />
+		<result column="unit" property="unit" />
+		<result column="place" property="place" />
+		<result column="created_at" property="createdAt" />
+		<result column="updated_at" property="updatedAt" />
+	</resultMap>
+	
+	<select id="selectMany" resultMap="stock">
+		SELECT * FROM stock
+	</select>
+	
+	<select id="eachPlace"
+	parameterType="string" resultMap="stock">
+		SELECT * FROM stock WHERE place = #{place}
+	</select>
+	
+	<select id="selectOne"
+	parameterType="int" resultType="com.yamada.springboot.domain.model.Stock">
+		SELECT stock_id AS stockId, stock_name AS stockName, quantity, unit, place, created_at AS createdAt ,updated_at AS updatedAt FROM stock WHERE stock_id = #{stockId}
+	</select>
+	
+	<insert id="insertOne" parameterType="com.yamada.springboot.domain.model.Stock">
+		INSERT INTO stock (stock_name, quantity, unit, place, created_at, updated_at) VALUES(#{stockName}, #{quantity}, #{unit}, #{place}, #{createdAt}, #{updatedAt})
+	</insert>
+	
+	<update id="updateOne" parameterType="com.yamada.springboot.domain.model.Stock">
+		UPDATE stock SET stock_name = #{stockName}, quantity = #{quantity}, unit = #{unit}, place = #{place}, created_at = #{createdAt}, updated_at = #{updatedAt} WHERE stock_id = #{stockId}
+	</update>
+	
+	<delete id="deleteOne" parameterType="int">
+		DELETE FROM stock WHERE stock_id = #{stockId}
+	</delete>
+
+</mapper>
