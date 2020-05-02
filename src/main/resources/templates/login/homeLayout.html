@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" rel="stylesheet">
+	<script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+
+	<link th:href="@{/css/home.css}" rel="stylesheet">
+
+	<title>Home</title>
+
+</head>
+
+<body class="d-flex flex-column">
+	<div class="contents-wrapper min-vh-100">
+		<nav class="navbar bg-dark">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="/" class="navbar-brand text-white">Spring Sample</a>
+				</div>
+				<form method="post" th:action="@{'/logout'}">
+					<button class="btn btn-link pull-right navbar-brand text-white">ログアウト</button>
+				</form>
+			</div>
+		</nav>
+
+		<div class="sidebar container-fluid pt-5">
+			<ul class="nav nav-pills nav-stacked d-flex flex-column">
+				<li role="presentation"><a th:href="@{'/myPage'}">マイページ</a></li>
+				<li role="presentation" sec:authorize="hasRole('ADMIN')"><a th:href="@{'/admin/users'}">アドミン画面</a></li>
+			</ul>
+		</div>
+		<div class="main container-fluid pt-3">
+			<div th:include="__${contents}__"></div>
+		</div>
+	</div>
+</body>
+
+</html>

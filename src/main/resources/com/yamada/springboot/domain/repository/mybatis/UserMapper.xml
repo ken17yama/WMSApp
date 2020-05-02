@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- <mapper> -->
+<mapper namespace="com.yamada.springboot.domain.repository.mybatis.UserMapper">
+
+	<!-- マッピング定義 -->
+	<resultMap type="com.yamada.springboot.domain.model.User" id="user">
+		<id column="user_id" property="userId" />
+		<result column="user_name" property="userName" />
+		<result column="mail" property="mail" />
+		<result column="password" property="password" />
+		<result column="birthday" property="birthday" />
+		<result column="role" property="role" />
+	</resultMap>
+	
+	<insert id="insertOne" parameterType="com.yamada.springboot.domain.model.User">
+		INSERT INTO user (user_name, mail, password, birthday, role) VALUES(#{userName}, #{mail}, #{password}, #{birthday}, #{role})
+	</insert>
+	
+	<select id="count" resultType="int">
+		SELECT COUNT(*) FROM user
+	</select>
+	
+	<select id="selectMany" resultMap="user">
+		SELECT * FROM user
+	</select>
+	
+	<select id="selectOne"
+	parameterType="string" resultType="com.yamada.springboot.domain.model.User">
+		SELECT user_id AS userId, user_name AS userName, mail, birthday, role FROM user WHERE mail = #{mail}
+	</select>
+	
+	<delete id="deleteOne" parameterType="string">
+		DELETE FROM user WHERE mail = #{mail}
+	</delete>
+
+</mapper>
