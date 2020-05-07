@@ -31,8 +31,10 @@
 
 		<div class="sidebar container-fluid pt-5">
 			<ul class="nav nav-pills nav-stacked d-flex flex-column">
-				<li role="presentation"><a th:href="@{'/myPage'}">マイページ</a></li>
-				<li role="presentation" sec:authorize="hasRole('ADMIN')"><a th:href="@{'/admin/users'}">アドミン画面</a></li>
+				<li role="presentation"><a th:href="@{'/mypage'}">マイページ</a></li>
+				<li role="presentation" sec:authorize="hasRole('ADMIN')"><a th:href="@{'/admin/user'}">ユーザー一覧</a></li>
+				<li role="presentation" sec:authorize="hasRole('ADMIN')"><a th:href="@{'/admin/group'}">グループ一覧</a></li>
+				<li role="presentation" sec:authorize="hasRole('GENERAL')"><a th:href="@{'/group'}">グループ一覧</a></li>
 			</ul>
 		</div>
 		<div class="main container-fluid pt-3">

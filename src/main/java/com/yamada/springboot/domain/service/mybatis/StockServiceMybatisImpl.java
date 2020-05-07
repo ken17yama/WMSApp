@@ -8,11 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yamada.springboot.domain.model.Stock;
 import com.yamada.springboot.domain.repository.mybatis.StockMapper;
-import com.yamada.springboot.domain.service.StockRestService;
+import com.yamada.springboot.domain.service.StockService;
 
 @Transactional
-@Service("StockRestServiceMybatisImpl")
-public class StockRestServiceMybatisImpl implements StockRestService {
+@Service("StockServiceMybatisImpl")
+public class StockServiceMybatisImpl implements StockService {
 	
 	@Autowired
 	StockMapper stockMapper;
@@ -23,7 +23,7 @@ public class StockRestServiceMybatisImpl implements StockRestService {
 	}
 
 	@Override
-	public List<Stock> eachPlace(String place) {
+	public List<Stock> eachPlace(Integer place) {
 		return stockMapper.eachPlace(place);
 	}
 

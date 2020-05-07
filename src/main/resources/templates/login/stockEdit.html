@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:fragment="stockEdit_contents">
+		<div class="page-header">
+			<h1>ストックの編集</h1>
+		</div>
+		<table class="table table-bordered table-hover table-striped">
+			<tr>
+				<th class="info">グループID</th>
+				<th class="info">グループ名</th>
+				<th class="info">登録日</th>
+				<th class="info">更新日</th>
+			</tr>
+			<tr th:object="${group}">
+				<td th:text="*{groupId}"></td>
+				<td th:text="*{groupName}"></td>
+				<td th:text="*{#dates.format(createdAt,'YYYY/MM/dd')}"></td>
+				<td th:text="*{#dates.format(updatedAt,'YYYY/MM/dd')}"></td>
+			</tr>
+		</table>
+		<form method="post" th:action="@{''}" th:object="${stockForm}">
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th class="active"><label for="">品名</label></th>
+					<td class="form-group"><input type="text" class="form-control" th:field="*{stockName}"></td>
+				</tr>
+				<tr>
+					<th class="active"><label for="">在庫数</label></th>
+					<td class="form-group"><input type="number" class="form-control" th:field="*{quantity}"></td>
+				</tr>
+				<tr>
+					<th class="active"><label for="">単位</label></th>
+					<td class="form-group"><input type="text" class="form-control" th:field="*{unit}"></td>
+				</tr>
+			</table>
+			<button class="btn btn-info btn-lg pull-right" type="submit" name="update">更新</button>
+		</form>
+	</div>
+</body>
+
+</html>

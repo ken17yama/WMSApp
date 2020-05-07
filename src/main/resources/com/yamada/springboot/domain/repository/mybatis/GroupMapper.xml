@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- <mapper> -->
+<mapper namespace="com.yamada.springboot.domain.repository.mybatis.GroupMapper">
+
+	<!-- マッピング定義 -->
+	<resultMap type="com.yamada.springboot.domain.model.Group" id="group">
+		<id column="group_id" property="groupId" />
+		<result column="group_name" property="groupName" />
+		<result column="created_at" property="createdAt" />
+		<result column="updated_at" property="updatedAt" />
+	</resultMap>
+	
+	<insert id="insertOne" parameterType="com.yamada.springboot.domain.model.Group">
+		INSERT INTO groups (group_name, created_at, updated_at) VALUES(#{groupName}, #{createdAt}, #{updatedAt})
+	</insert>
+	
+	<insert id="insertOneReturn" parameterType="com.yamada.springboot.domain.model.Group" useGeneratedKeys="true" keyProperty="groupId">
+		INSERT INTO groups (group_name, created_at, updated_at) VALUES(#{groupName}, #{createdAt}, #{updatedAt})
+		<!-- <selectKey resultType="int" keyProperty="groupId" order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey> -->
+	</insert>
+	
+	<select id="selectMany" resultMap="group">
+		SELECT * FROM groups
+	</select>
+	
+	<select id="selectThat" parameterType="java.util.List" resultMap="group">
+		SELECT * FROM groups WHERE group_id IN
+		<foreach item="group_id" collection="list"
+			open="(" separator="," close=
+			")">
+			#{group_id}	
+		</foreach>
+	</select>
+	
+	<select id="selectOne"
+	parameterType="int" resultType="com.yamada.springboot.domain.model.Group">
+		SELECT group_id AS groupId, group_name AS groupName, created_at AS createdAt, updated_at AS updatedAt FROM groups WHERE group_id = #{groupId}
+	</select>
+	
+	<delete id="deleteOne" parameterType="int">
+		DELETE FROM groups WHERE group_id = #{groupId}
+	</delete>
+
+</mapper>

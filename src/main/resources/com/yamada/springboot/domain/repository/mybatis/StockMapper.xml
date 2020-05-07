@@ -17,29 +17,29 @@
 	</resultMap>
 	
 	<select id="selectMany" resultMap="stock">
-		SELECT * FROM stock
+		SELECT * FROM stocks
 	</select>
 	
 	<select id="eachPlace"
-	parameterType="string" resultMap="stock">
-		SELECT * FROM stock WHERE place = #{place}
+	parameterType="int" resultMap="stock">
+		SELECT * FROM stocks WHERE place = #{place}
 	</select>
 	
 	<select id="selectOne"
 	parameterType="int" resultType="com.yamada.springboot.domain.model.Stock">
-		SELECT stock_id AS stockId, stock_name AS stockName, quantity, unit, place, created_at AS createdAt ,updated_at AS updatedAt FROM stock WHERE stock_id = #{stockId}
+		SELECT stock_id AS stockId, stock_name AS stockName, quantity, unit, place, created_at AS createdAt ,updated_at AS updatedAt FROM stocks WHERE stock_id = #{stockId}
 	</select>
 	
 	<insert id="insertOne" parameterType="com.yamada.springboot.domain.model.Stock">
-		INSERT INTO stock (stock_name, quantity, unit, place, created_at, updated_at) VALUES(#{stockName}, #{quantity}, #{unit}, #{place}, #{createdAt}, #{updatedAt})
+		INSERT INTO stocks (stock_name, quantity, unit, place, created_at, updated_at) VALUES(#{stockName}, #{quantity}, #{unit}, #{place}, #{createdAt}, #{updatedAt})
 	</insert>
 	
 	<update id="updateOne" parameterType="com.yamada.springboot.domain.model.Stock">
-		UPDATE stock SET stock_name = #{stockName}, quantity = #{quantity}, unit = #{unit}, place = #{place}, created_at = #{createdAt}, updated_at = #{updatedAt} WHERE stock_id = #{stockId}
+		UPDATE stocks SET stock_name = #{stockName}, quantity = #{quantity}, unit = #{unit}, updated_at = #{updatedAt} WHERE stock_id = #{stockId}
 	</update>
 	
 	<delete id="deleteOne" parameterType="int">
-		DELETE FROM stock WHERE stock_id = #{stockId}
+		DELETE FROM stocks WHERE stock_id = #{stockId}
 	</delete>
 
 </mapper>

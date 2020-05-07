@@ -13,27 +13,33 @@
 		<result column="password" property="password" />
 		<result column="birthday" property="birthday" />
 		<result column="role" property="role" />
+		<result column="my_place" property="myPlace" />
+		
 	</resultMap>
 	
 	<insert id="insertOne" parameterType="com.yamada.springboot.domain.model.User">
-		INSERT INTO user (user_name, mail, password, birthday, role) VALUES(#{userName}, #{mail}, #{password}, #{birthday}, #{role})
+		INSERT INTO users (user_name, mail, password, birthday, role) VALUES(#{userName}, #{mail}, #{password}, #{birthday}, #{role})
 	</insert>
 	
 	<select id="count" resultType="int">
-		SELECT COUNT(*) FROM user
+		SELECT COUNT(*) FROM users
 	</select>
 	
 	<select id="selectMany" resultMap="user">
-		SELECT * FROM user
+		SELECT * FROM users
 	</select>
 	
 	<select id="selectOne"
 	parameterType="string" resultType="com.yamada.springboot.domain.model.User">
-		SELECT user_id AS userId, user_name AS userName, mail, birthday, role FROM user WHERE mail = #{mail}
+		SELECT user_id AS userId, user_name AS userName, mail, birthday, role, my_place AS myPlace FROM users WHERE mail = #{mail}
 	</select>
 	
+	<update id="editPlace">
+		UPDATE users SET my_place = #{param2} WHERE mail = #{param1}
+	</update>
+	
 	<delete id="deleteOne" parameterType="string">
-		DELETE FROM user WHERE mail = #{mail}
+		DELETE FROM users WHERE mail = #{mail}
 	</delete>
 
 </mapper>

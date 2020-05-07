@@ -38,6 +38,11 @@ public class UserServiceMybatisImpl implements UserService {
 	}
 
 	@Override
+	public boolean editPlace(String mail, String myPlace) {
+		return userMapper.editPlace(mail, myPlace);
+	}
+
+	@Override
 	public boolean deleteOne(String mail) {
 		return userMapper.deleteOne(mail);
 	}

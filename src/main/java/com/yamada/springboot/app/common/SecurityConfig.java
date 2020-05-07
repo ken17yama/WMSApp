@@ -26,8 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	private DataSource dataSource;
-	private static final String USER_SQL = "SELECT mail, password, true FROM user WHERE mail = ?";
-	private static final String ROLE_SQL = "SELECT mail, role FROM user WHERE mail = ?";
+	private static final String USER_SQL = "SELECT mail, password, true FROM users WHERE mail = ?";
+	private static final String ROLE_SQL = "SELECT mail, role FROM users WHERE mail = ?";
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception{

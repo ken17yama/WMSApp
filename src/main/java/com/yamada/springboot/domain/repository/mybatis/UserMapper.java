@@ -16,6 +16,8 @@ public interface UserMapper {
 	public List<User> selectMany();
 
 	public User selectOne(String mail);
+	
+	public boolean editPlace(String mail, String myPlace);
 
 	public boolean deleteOne(String mail);
 

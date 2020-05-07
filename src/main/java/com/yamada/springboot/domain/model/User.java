@@ -9,15 +9,23 @@ public class User {
 
 	//	ID
 	private Integer userId;
+
 	//	ユーザー名
 	private String userName;
+
 	//	メールアドレス
 	private String mail;
+
 	//	パスワード
 	private String password;
+
 	//	誕生日
 	private Date birthday;
+
 	//	権限
 	private String role;
+
+	//	管理対象
+	private String myPlace;
 
 }

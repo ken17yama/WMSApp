@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.yamada.springboot.domain.model.Stock;
 
-public interface StockRestService {
+public interface StockService {
 
 	//	全件の在庫を取得
 	public List<Stock> selectMany();
 
 	//	保管場所ごとに在庫を取得
-	public List<Stock> eachPlace(String place);
+	public List<Stock> eachPlace(Integer place);
 
 	//	IDから在庫を一件取得
 	public Stock selectOne(Integer stockId);

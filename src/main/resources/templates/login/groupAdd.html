@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:fragment="groupAdd_contents">
+		<div class="page-header">
+			<h1>グループを作成</h1>
+		</div>
+		<form method="post" th:action="@{''}" th:object="${groupForm}">
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th class="active"><label for="">グループ名</label></th>
+					<td class="form-group"><input type="text" class="form-control" th:field="*{groupName}"></td>
+				</tr>
+				<tr>
+					<th class="active"><label for="">ユーザー（メールアドレス）</label></th>
+					<td class="form-group">
+						<div>
+							<input class="testNo" type="text" th:field="*{groupList[0]}" />
+						</div>
+						<div id="piyo"></div>
+						<a href="#" id="addInput" tabIndex="-1">＋追加</a>
+					</td>
+				</tr>
+			</table>
+			<button class="btn btn-primary btn-lg pull-right" type="submit" name="post">追加</button>
+		</form>
+		<script>
+			function add() {
+				var inputCount = document.getElementsByClassName("testNo").length;
+				var input = document.createElement("input");
+				input.setAttribute("type", "text");
+				input.setAttribute("id", "groupList" + inputCount);
+				input.setAttribute("class", "testNo");
+				input.setAttribute("name", "groupList[" + inputCount + "]")
+				input.setAttribute("value", "");
+				var ele = document.createElement("div");
+				ele.appendChild(input);
+				document.getElementById("piyo").appendChild(ele);
+			}
+			document.getElementById("addInput").addEventListener("click", function (e) {
+				console.log(
+					"click"
+				);
+				add();
+			}, false);
+		</script>
+	</div>
+</body>
+
+</html>

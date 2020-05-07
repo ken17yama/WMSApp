@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:fragment="stockDelete_contents">
+		<div class="page-header">
+			<h1>ストックの編集</h1>
+		</div>
+		<table class="table table-bordered table-hover table-striped">
+			<tr>
+				<th class="info">グループID</th>
+				<th class="info">グループ名</th>
+				<th class="info">登録日</th>
+				<th class="info">更新日</th>
+			</tr>
+			<tr th:object="${group}">
+				<td th:text="*{groupId}"></td>
+				<td th:text="*{groupName}"></td>
+				<td th:text="*{#dates.format(createdAt,'YYYY/MM/dd')}"></td>
+				<td th:text="*{#dates.format(updatedAt,'YYYY/MM/dd')}"></td>
+			</tr>
+		</table>
+		<form method="post" th:action="@{''}" th:object="${stockForm}">
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th class="info">ストックID</th>
+					<th class="info">品名</th>
+					<th class="info">在庫数</th>
+					<th class="info">単位</th>
+					<th class="info">保管場所</th>
+					<th class="info">登録日</th>
+					<th class="info">更新日</th>
+				</tr>
+				<tr th:object="${stock}">
+					<td th:text="*{stockId}"></td>
+					<td th:text="*{stockName}"></td>
+					<td th:text="*{quantity}"></td>
+					<td th:text="*{unit}"></td>
+					<td th:text="*{place}"></td>
+					<td th:text="*{#dates.format(createdAt,'YYYY/MM/dd')}"></td>
+					<td th:text="*{#dates.format(updatedAt,'YYYY/MM/dd')}"></td>
+					<td>
+				</tr>
+			</table>
+			<button class="btn btn-danger btn-lg pull-right" type="submit" name="delete">削除</button>
+		</form>
+	</div>
+</body>
+
+</html>

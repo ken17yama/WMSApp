@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:fragment="myPageEdit_contents">
+		<div class="page-header">
+			<h1>マイページ</h1>
+		</div>
+		<form method="post" th:action="@{/myPageEdit}" th:object="${signupForm}">
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th class="active"><label for="">ユーザー名</label></th>
+					<td class="form-group" th:classappend="${#fields.hasErrors('userName')} ? 'has-error'"><input
+						type="text" class="form-control" th:field="*{userName}">
+						<p class="mb-0">
+							<small class="text-danger" th:if="${#fields.hasErrors('userName')}"
+								th:errors="*{userName}">userName error</small>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th class="active"><label for="">メールアドレス</label></th>
+					<td class="form-group"><input type="text" class="form-control" th:field="*{mail}"></td>
+				</tr>
+				<tr>
+					<th class="active"><label for="">パスワード</label></th>
+					<td class="form-group" th:classappend="${#fields.hasErrors('password')} ? 'has-error'"><input
+						type="text" class="form-control" th:field="*{password}">
+						<p class="mb-0">
+							<small class="text-danger"
+								th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password
+								error</small>
+						</p></td>
+				</tr>
+				<tr>
+					<th class="active"><label for="">誕生日</label></th>
+					<td class="form-group"
+						th:classappend="${#fields.hasErrors('birthday')} ? 'has-error'">
+						<input type="date" class="form-control" placeholder="yyyy-MM-dd"
+						th:field="*{birthday}">
+						<p class="mb-0">
+							<small class="text-danger"
+								th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">birthday
+								error</small>
+						</p>
+					</td>
+				</tr>
+			</table>
+			<button class="btn btn-primary btn-lg pull-right" type="submit"
+				name="update">更新</button>
+			<a class="btn btn-danger btn-lg pull-right" href="/mypage/delete"
+				name="delete">削除</a>
+		</form>
+	</div>
+</body>
+
+</html>

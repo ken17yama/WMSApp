@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.yamada.springboot.domain.model.SignupForm;
 import com.yamada.springboot.domain.model.User;
@@ -88,19 +89,22 @@ public class HomeController {
 //		return getUserList(model);
 //	}
 
-//	@PostMapping(value = "/userDetail", params = "delete")
-//	public String postUserDetailDelete(@ModelAttribute SignupForm form, Model model) {
-//		System.out.println("削除ボタンの処理");
-//
-//		boolean result = userService.deleteOne(form.getUserId());
-//		if(result == true) {
-//			model.addAttribute("result", "削除成功");
-//		}else {
-//			model.addAttribute("result", "削除失敗");
-//		}
-//
-//		return getUserList(model);
-//	}
+	@GetMapping("/mypage/delete")
+	public String postUserDelete(@ModelAttribute SignupForm form, Model model, Principal principal) {
+		// ユーザーの情報をusersテーブルから取り出し、対象のplaceがあるかを確認
+		String mail = principal.getName();
+
+		System.out.println("削除ボタンの処理");
+
+		boolean result = userService.deleteOne(mail);
+		if(result == true) {
+			model.addAttribute("result", "削除成功");
+		}else {
+			model.addAttribute("result", "削除失敗");
+		}
+
+		return "redirect:/login";
+	}
 
 //	@GetMapping("/logout")
 //	public String postLogout() {
@@ -128,7 +132,7 @@ public class HomeController {
 //		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 //	}
 	
-	@GetMapping("/admin/users")
+	@GetMapping("/admin/user")
 	public String getAdmin(Model model) {
 		model.addAttribute("contents", "login/admin :: admin_contents");
 
@@ -144,7 +148,7 @@ public class HomeController {
 		return "login/homeLayout";
 	}
 	
-	@GetMapping("/admin/users/{mail}")
+	@GetMapping("/admin/user/{mail}")
 	public String getUserDetail(@ModelAttribute SignupForm form, Model model, @PathVariable("mail") String mail) {
 		model.addAttribute("contents", "login/userDetail :: userDetail_contents");
 		if(mail != null) {
@@ -160,11 +164,22 @@ public class HomeController {
 		return "login/homeLayout";
 	}
 	
-	@GetMapping("/myPage")
+	@GetMapping("/mypage")
 	public String getMyPage(@ModelAttribute SignupForm form, Model model, Principal principal) {
+		model.addAttribute("contents", "login/myPage :: myPage_contents");
+		
+		String mail = principal.getName();		
+		User user = userService.selectOne(mail);
+		model.addAttribute("user", user);
+
+		return "login/homeLayout";
+	}
+	
+	@GetMapping("/mypage/edit")
+	public String getMyPageEdit(@ModelAttribute SignupForm form, Model model, Principal principal) {
 		String mail = principal.getName();
 		System.out.println(mail);
-		model.addAttribute("contents", "login/myPage :: myPage_contents");
+		model.addAttribute("contents", "login/myPageEdit :: myPageEdit_contents");
 		if(mail != null) {
 			User user = userService.selectOne(mail);
 			

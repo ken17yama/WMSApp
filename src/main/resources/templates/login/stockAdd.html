@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:fragment="stockAdd_contents">
+		<div class="page-header">
+			<h1>ストックを追加</h1>
+		</div>
+		<form method="post" th:action="@{''}" th:object="${stockForm}">
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th class="active"><label for="">品名</label></th>
+					<td class="form-group"><input type="text" class="form-control" th:field="*{stockName}"></td>
+				</tr>
+				<tr>
+					<th class="active"><label for="">在庫数</label></th>
+					<td class="form-group"><input type="number" class="form-control" th:field="*{quantity}"></td>
+				</tr>
+				<tr>
+					<th class="active"><label for="">単位</label></th>
+					<td class="form-group"><input type="text" class="form-control" th:field="*{unit}"></td>
+				</tr>
+			</table>
+			<button class="btn btn-primary btn-lg pull-right" type="submit" name="post">追加</button>
+		</form>
+	</div>
+</body>
+
+</html>

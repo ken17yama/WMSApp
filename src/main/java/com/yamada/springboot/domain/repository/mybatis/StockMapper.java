@@ -13,10 +13,10 @@ public interface StockMapper {
 	public List<Stock> selectMany();
 
 	//	保管場所ごとに在庫を取得
-	public List<Stock> eachPlace(String place);
+	public List<Stock> eachPlace(Integer place);
 
 	//	保管場所ごとに在庫を取得
-	public Stock selectOne(int id);
+	public Stock selectOne(Integer stockId);
 
 	//	在庫を一件挿入
 	public boolean insertOne(Stock stock);
@@ -25,6 +25,6 @@ public interface StockMapper {
 	public boolean updateOne(Stock stock);
 
 	//	在庫を一件削除
-	public boolean deleteOne(int id);
+	public boolean deleteOne(Integer stockId);
 
 }

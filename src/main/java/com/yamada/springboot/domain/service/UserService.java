@@ -14,6 +14,8 @@ public interface UserService {
 	
 	public User selectOne(String mail);
 	
+	public boolean editPlace(String mail, String myPlace);
+	
 	public boolean deleteOne(String mail);
 	
 }

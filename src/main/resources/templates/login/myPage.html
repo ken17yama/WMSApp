@@ -10,59 +10,27 @@
 		<div class="page-header">
 			<h1>マイページ</h1>
 		</div>
-		<form method="post" th:action="@{/myPage}" th:object="${signupForm}">
-			<table class="table table-bordered table-hover">
-				<!-- <tr>
-							<th class="active"><label for="">ユーザーID</label></th>
-							<td class="form-group"><input type="text" class="form-control" th:field="*{userId}" readonly="readonly"></td>
-						</tr> -->
-				<tr>
-					<th class="active"><label for="">ユーザー名</label></th>
-					<td class="form-group" th:classappend="${#fields.hasErrors('userName')} ? 'has-error'"><input
-						type="text" class="form-control" th:field="*{userName}">
-						<p class="mb-0">
-							<small class="text-danger" th:if="${#fields.hasErrors('userName')}"
-								th:errors="*{userName}">userName error</small>
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<th class="active"><label for="">メールアドレス</label></th>
-					<td class="form-group"><input type="text" class="form-control" th:field="*{mail}"></td>
-				</tr>
-				<tr>
-					<th class="active"><label for="">パスワード</label></th>
-					<td class="form-group" th:classappend="${#fields.hasErrors('password')} ? 'has-error'"><input
-						type="text" class="form-control" th:field="*{password}">
-						<p class="mb-0">
-							<small class="text-danger"
-								th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password
-								error</small>
-						</p></td>
-				</tr>
-				<tr>
-					<th class="active"><label for="">誕生日</label></th>
-					<td class="form-group"
-						th:classappend="${#fields.hasErrors('birthday')} ? 'has-error'">
-						<input type="date" class="form-control" placeholder="yyyy-MM-dd"
-						th:field="*{birthday}">
-						<p class="mb-0">
-							<small class="text-danger"
-								th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">birthday
-								error</small>
-						</p>
-					</td>
-				</tr>
-				<!-- <tr>
-					<th class="active"><label for="">役割</label></th>
-					<td class="form-group"><input type="text" class="form-control" th:field="*{role}"></td>
-				</tr> -->
-			</table>
-			<button class="btn btn-primary btn-lg pull-right" type="submit"
-				name="update">更新</button>
-			<button class="btn btn-primary btn-lg pull-right" type="submit"
-				name="delete">削除</button>
-		</form>
+		<table class="table table-bordered table-hover table-striped">
+			<tr>
+				<th class="info">ユーザーID</th>
+				<th class="info">ユーザー名</th>
+				<th class="info">メールアドレス</th>
+				<th class="info">パスワード</th>
+				<th class="info">誕生日</th>
+				<th class="info">役割</th>
+			</tr>
+			<tr th:object="${user}">
+				<td th:text="*{userId}"></td>
+				<td th:text="*{userName}"></td>
+				<td th:text="*{mail}"></td>
+				<td th:text="*{password}"></td>
+				<td th:text="*{#dates.format(birthday,'YYYY/MM/dd')}"></td>
+				<td th:text="*{role}"></td>
+			</tr>
+		</table>
+		<p>
+			<a href="/mypage/edit" class="btn btn-info">編集</a>
+		</p>
 	</div>
 </body>
 
