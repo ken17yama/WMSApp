@@ -38,6 +38,16 @@ public class UserServiceMybatisImpl implements UserService {
 	}
 
 	@Override
+	public Integer selectOneId(String mail) {
+		return userMapper.selectOneId(mail);
+	}
+
+	@Override
+	public String selectOnePassword(String mail) {
+		return userMapper.selectOnePassword(mail);
+	}
+
+	@Override
 	public boolean editPlace(String mail, String myPlace) {
 		return userMapper.editPlace(mail, myPlace);
 	}
@@ -46,5 +56,10 @@ public class UserServiceMybatisImpl implements UserService {
 	public boolean deleteOne(String mail) {
 		return userMapper.deleteOne(mail);
 	}
+	
+	@Override
+	public boolean updateOne(User user) {
+		return userMapper.updateOne(user);
+	};
 
 }

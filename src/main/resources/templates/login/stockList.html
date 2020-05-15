@@ -8,47 +8,45 @@
 <body>
 	<div th:fragment="stockList_contents">
 		<div class="page-header">
-			<h1>ストック一覧</h1>
+			<h3>ストック一覧</h3>
 		</div>
-		<table class="table table-bordered table-hover table-striped">
-			<tr>
-				<th class="info">グループID</th>
-				<th class="info">グループ名</th>
-				<th class="info">登録日</th>
-				<th class="info">更新日</th>
+		<table class="table table-hover">
+			<tr class="thead-dark">
+				<th class="text-nowrap text-center align-middle">ID</th>
+				<th class="text-nowrap text-center align-middle">グループ名</th>
+				<th class="text-nowrap text-center align-middle">登録日</th>
+				<th class="text-nowrap text-center align-middle">更新日</th>
 			</tr>
-			<tr th:object="${group}">
-				<td th:text="*{groupId}"></td>
-				<td th:text="*{groupName}"></td>
-				<td th:text="*{#dates.format(createdAt,'YYYY/MM/dd')}"></td>
-				<td th:text="*{#dates.format(updatedAt,'YYYY/MM/dd')}"></td>
+			<tr class="table-bordered" th:object="${group}">
+				<td class="text-nowrap text-center align-middle" th:text="*{groupId}"></td>
+				<td class="text-nowrap text-center align-middle" th:text="*{groupName}"></td>
+				<td class="text-nowrap text-center align-middle" th:text="*{#dates.format(createdAt,'YYYY/MM/dd')}"></td>
+				<td class="text-nowrap text-center align-middle" th:text="*{#dates.format(updatedAt,'YYYY/MM/dd')}"></td>
 			</tr>
 		</table>
 		<p>
 			<a th:href="@{/group/{groupId}/stock/add/(groupId=${group.groupId})}" class="btn btn-primary">追加</a>
 		</p>
-		<table class="table table-bordered table-hover table-striped">
-			<tr>
-				<th class="info">ストックID</th>
-				<th class="info">品名</th>
-				<th class="info">在庫数</th>
-				<th class="info">単位</th>
-				<th class="info">保管場所</th>
-				<th class="info">登録日</th>
-				<th class="info">更新日</th>
-				<th class="info"></th>
+		<table class="table table-hover">
+			<tr class="thead-dark">
+				<th class="text-nowrap text-center align-middle">ID</th>
+				<th class="text-nowrap text-center align-middle">品名</th>
+				<th class="text-nowrap text-center align-middle">在庫数</th>
+				<th class="text-nowrap text-center align-middle">単位</th>
+				<th class="text-nowrap text-center align-middle">登録日</th>
+				<th class="text-nowrap text-center align-middle">更新日</th>
+				<th class="text-nowrap text-center align-middle"></th>
 			</tr>
-			<tr th:each="stock : ${stockList}">
-				<td th:text="${stock.stockId}"></td>
-				<td th:text="${stock.stockName}"></td>
-				<td th:text="${stock.quantity}"></td>
-				<td th:text="${stock.unit}"></td>
-				<td th:text="${stock.place}"></td>
-				<td th:text="${#dates.format(stock.createdAt,'YYYY/MM/dd')}"></td>
-				<td th:text="${#dates.format(stock.updatedAt,'YYYY/MM/dd')}"></td>
-				<td>
-					<a th:href="@{/group/{groupId}/stock/edit/{stockId}(groupId=${group.groupId},stockId=${stock.stockId})}" class="btn btn-info" sec:authorize="hasRole('GENERAL')">変更</a>
-					<a th:href="@{/group/{groupId}/stock/delete/{stockId}(groupId=${group.groupId},stockId=${stock.stockId})}" class="btn btn-danger" sec:authorize="hasRole('GENERAL')">削除</a>
+			<tr class="table-bordered" th:each="stock : ${stockList}">
+				<td class="text-nowrap text-center align-middle" th:text="${stock.stockId}"></td>
+				<td class="text-nowrap text-center align-middle" th:text="${stock.stockName}"></td>
+				<td class="text-nowrap text-right align-middle" th:text="${stock.quantity}"></td>
+				<td class="text-nowrap text-left align-middle" th:text="${stock.unit}"></td>
+				<td class="text-nowrap text-center align-middle" th:text="${#dates.format(stock.createdAt,'YYYY/MM/dd')}"></td>
+				<td class="text-nowrap text-center align-middle" th:text="${#dates.format(stock.updatedAt,'YYYY/MM/dd')}"></td>
+				<td class="text-nowrap text-center align-middle">
+					<a th:href="@{/group/{groupId}/stock/edit/{stockId}(groupId=${group.groupId},stockId=${stock.stockId})}" class="btn btn-info">変更</a>
+					<a th:href="@{/group/{groupId}/stock/delete/{stockId}(groupId=${group.groupId},stockId=${stock.stockId})}" class="btn btn-danger">削除</a>
 				</td>
 			</tr>
 		</table>

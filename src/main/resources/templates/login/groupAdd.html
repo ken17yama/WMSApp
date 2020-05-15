@@ -8,16 +8,16 @@
 <body>
 	<div th:fragment="groupAdd_contents">
 		<div class="page-header">
-			<h1>グループを作成</h1>
+			<h3>グループを作成</h3>
 		</div>
 		<form method="post" th:action="@{''}" th:object="${groupForm}">
 			<table class="table table-bordered table-hover">
 				<tr>
-					<th class="active"><label for="">グループ名</label></th>
+					<th class="table-dark text-nowrap text-center align-middle"><label for="">グループ名</label></th>
 					<td class="form-group"><input type="text" class="form-control" th:field="*{groupName}"></td>
 				</tr>
 				<tr>
-					<th class="active"><label for="">ユーザー（メールアドレス）</label></th>
+					<th class="table-dark text-nowrap text-center align-middle"><label for="">ユーザー（メールアドレス）</label></th>
 					<td class="form-group">
 						<div>
 							<input class="testNo" type="text" th:field="*{groupList[0]}" />

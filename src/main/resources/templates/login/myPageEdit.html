@@ -1,34 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-	<meta charset="UTF-8">
+<meta charset="UTF-8">
 </head>
 
 <body>
 	<div th:fragment="myPageEdit_contents">
 		<div class="page-header">
-			<h1>マイページ</h1>
+			<h3>マイページ</h3>
 		</div>
-		<form method="post" th:action="@{/myPageEdit}" th:object="${signupForm}">
+		<form method="post" th:action="@{/mypage/edit}"
+			th:object="${userEditForm}">
 			<table class="table table-bordered table-hover">
 				<tr>
-					<th class="active"><label for="">ユーザー名</label></th>
-					<td class="form-group" th:classappend="${#fields.hasErrors('userName')} ? 'has-error'"><input
-						type="text" class="form-control" th:field="*{userName}">
+					<th class="table-dark text-nowrap text-center align-middle"><label for="userName" class="mb-0">ユーザー名</label></th>
+					<td class="form-group"
+						th:classappend="${#fields.hasErrors('userName')} ? 'has-error'"><input
+						type="text" class="form-control" required th:field="*{userName}">
 						<p class="mb-0">
-							<small class="text-danger" th:if="${#fields.hasErrors('userName')}"
-								th:errors="*{userName}">userName error</small>
-						</p>
-					</td>
+							<small class="text-danger"
+								th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">userName
+								error</small>
+						</p></td>
 				</tr>
 				<tr>
-					<th class="active"><label for="">メールアドレス</label></th>
-					<td class="form-group"><input type="text" class="form-control" th:field="*{mail}"></td>
+					<th class="table-dark text-nowrap text-center align-middle"><label for="mail" class="mb-0">メールアドレス</label></th>
+					<td class="form-group"
+						th:classappend="${#fields.hasErrors('mail')} ? 'has-error'"><input
+						type="text" class="form-control" required th:field="*{mail}">
+						<p class="mb-0">
+							<small class="text-danger" th:if="${#fields.hasErrors('mail')}"
+								th:errors="*{mail}">mail error</small></td>
 				</tr>
 				<tr>
-					<th class="active"><label for="">パスワード</label></th>
-					<td class="form-group" th:classappend="${#fields.hasErrors('password')} ? 'has-error'"><input
+					<th class="table-dark text-nowrap text-center align-middle"><label for="password" class="mb-0">パスワード</label></th>
+					<td class="form-group"
+						th:classappend="${#fields.hasErrors('password')} ? 'has-error'"><input
 						type="text" class="form-control" th:field="*{password}">
 						<p class="mb-0">
 							<small class="text-danger"
@@ -37,11 +46,11 @@
 						</p></td>
 				</tr>
 				<tr>
-					<th class="active"><label for="">誕生日</label></th>
+					<th class="table-dark text-nowrap text-center align-middle"><label for="birthday" class="mb-0">誕生日</label></th>
 					<td class="form-group"
 						th:classappend="${#fields.hasErrors('birthday')} ? 'has-error'">
 						<input type="date" class="form-control" placeholder="yyyy-MM-dd"
-						th:field="*{birthday}">
+						required th:field="*{birthday}">
 						<p class="mb-0">
 							<small class="text-danger"
 								th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">birthday
@@ -52,8 +61,6 @@
 			</table>
 			<button class="btn btn-primary btn-lg pull-right" type="submit"
 				name="update">更新</button>
-			<a class="btn btn-danger btn-lg pull-right" href="/mypage/delete"
-				name="delete">削除</a>
 		</form>
 	</div>
 </body>

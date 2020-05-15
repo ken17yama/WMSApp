@@ -8,23 +8,21 @@
 <body>
 	<div th:fragment="userList_contents">
 		<div class="page-header">
-			<h1>ユーザー一覧</h1>
+			<h3>ユーザー一覧</h3>
 		</div>
 		<table class="table table-bordered table-hover table-striped">
 			<tr>
-				<th class="info">ユーザーID</th>
-				<th class="info">ユーザー名</th>
-				<th class="info">メールアドレス</th>
-				<th class="info">パスワード</th>
-				<th class="info">誕生日</th>
-				<th class="info">役割</th>
-				<th class="info"></th>
+				<th class="text-nowrap">ユーザーID</th>
+				<th class="text-nowrap">ユーザー名</th>
+				<th class="text-nowrap">メールアドレス</th>
+				<th class="text-nowrap">誕生日</th>
+				<th class="text-nowrap">ロール</th>
+				<th class="text-nowrap"></th>
 			</tr>
 			<tr th:each="user : ${userList}">
 				<td th:text="${user.userId}"></td>
 				<td th:text="${user.userName}"></td>
 				<td th:text="${user.mail}"></td>
-				<td th:text="${user.password}"></td>
 				<td th:text="${#dates.format(user.birthday,'YYYY/MM/dd')}"></td>
 				<td th:text="${user.role}"></td>
 				<td><a th:href="@{'/userDetail/' + ${user.userId}}"

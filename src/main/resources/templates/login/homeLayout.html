@@ -18,23 +18,23 @@
 
 <body class="d-flex flex-column">
 	<div class="contents-wrapper min-vh-100">
-		<nav class="navbar bg-dark">
+		<nav class="navbar">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a href="/" class="navbar-brand text-white">Spring Sample</a>
+					<a href="/" class="navbar-brand text-white">在庫管理くん</a>
 				</div>
 				<form method="post" th:action="@{'/logout'}">
-					<button class="btn btn-link pull-right navbar-brand text-white">ログアウト</button>
+					<button class="btn btn-secondary">ログアウト</button>
 				</form>
 			</div>
 		</nav>
 
-		<div class="sidebar container-fluid pt-5">
+		<div class="sidebar">
 			<ul class="nav nav-pills nav-stacked d-flex flex-column">
-				<li role="presentation"><a th:href="@{'/mypage'}">マイページ</a></li>
-				<li role="presentation" sec:authorize="hasRole('ADMIN')"><a th:href="@{'/admin/user'}">ユーザー一覧</a></li>
-				<li role="presentation" sec:authorize="hasRole('ADMIN')"><a th:href="@{'/admin/group'}">グループ一覧</a></li>
-				<li role="presentation" sec:authorize="hasRole('GENERAL')"><a th:href="@{'/group'}">グループ一覧</a></li>
+				<li role="presentation"><a th:href="@{'/mypage'}" class="text-nowrap">マイページ</a></li>
+				<li role="presentation" sec:authorize="hasRole('ADMIN')"><a th:href="@{'/admin/user'}" class="text-nowrap">ユーザー一覧</a></li>
+				<li role="presentation" sec:authorize="hasRole('ADMIN')"><a th:href="@{'/admin/group'}" class="text-nowrap">管理場所一覧</a></li>
+				<li role="presentation" sec:authorize="hasRole('GENERAL')"><a th:href="@{'/group'}" class="text-nowrap">管理場所一覧</a></li>
 			</ul>
 		</div>
 		<div class="main container-fluid pt-3">

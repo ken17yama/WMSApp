@@ -13,15 +13,15 @@
 		<form method="post" th:action="@{''}" th:object="${stockForm}">
 			<table class="table table-bordered table-hover">
 				<tr>
-					<th class="active"><label for="">品名</label></th>
+					<th class="table-dark text-nowrap text-center align-middle"><label for="">品名</label></th>
 					<td class="form-group"><input type="text" class="form-control" th:field="*{stockName}"></td>
 				</tr>
 				<tr>
-					<th class="active"><label for="">在庫数</label></th>
+					<th class="table-dark text-nowrap text-center align-middle"><label for="">在庫数</label></th>
 					<td class="form-group"><input type="number" class="form-control" th:field="*{quantity}"></td>
 				</tr>
 				<tr>
-					<th class="active"><label for="">単位</label></th>
+					<th class="table-dark text-nowrap text-center align-middle"><label for="">単位</label></th>
 					<td class="form-group"><input type="text" class="form-control" th:field="*{unit}"></td>
 				</tr>
 			</table>

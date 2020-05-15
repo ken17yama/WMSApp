@@ -8,25 +8,24 @@
 <body>
 	<div th:fragment="groupList_contents">
 		<div class="page-header">
-			<h1>グループ一覧</h1>
+			<h3>管理場所一覧</h3>
 		</div>
-		<table class="table table-bordered table-hover table-striped">
-			<tr>
-				<th class="info">グループID</th>
-				<th class="info">グループ名</th>
-				<th class="info">登録日</th>
-				<th class="info">更新日</th>
-				<th class="info"></th>
+		<table class="table table-hover">
+			<tr class="thead-dark">
+				<th class="text-nowrap text-center align-middle">ID</th>
+				<th class="text-nowrap text-center align-middle">管理場所名</th>
+				<th class="text-nowrap text-center align-middle">登録日</th>
+				<th class="text-nowrap text-center align-middle">更新日</th>
+				<th class="text-nowrap text-center align-middle"></th>
 			</tr>
-			<tr th:each="group : ${groupList}">
-				<td th:text="${group.groupId}"></td>
-				<td th:text="${group.groupName}"></td>
-				<td th:text="${#dates.format(group.createdAt,'YYYY/MM/dd')}"></td>
-				<td th:text="${#dates.format(group.updatedAt,'YYYY/MM/dd')}"></td>
-				<td>
-					<a th:href="@{/group/{groupId}/stock/(groupId=${group.groupId})}" class="btn btn-primary" sec:authorize="hasRole('ADMIN')">詳細</a>
-					<a th:href="@{/group/{groupId}/stock/(groupId=${group.groupId})}" class="btn btn-primary" sec:authorize="hasRole('GENERAL')">詳細</a>
-					<a th:href="@{/group/{groupId}/stock/delete(groupId=${group.groupId})}" class="btn btn-danger" sec:authorize="hasRole('GENERAL')">削除</a>
+			<tr class="table-bordered" th:each="group : ${groupList}">
+				<td class="text-nowrap text-center align-middle" th:text="${group.groupId}"></td>
+				<td class="text-nowrap text-center align-middle" th:text="${group.groupName}"></td>
+				<td class="text-nowrap text-center align-middle" th:text="${#dates.format(group.createdAt,'YYYY/MM/dd')}"></td>
+				<td class="text-nowrap text-center align-middle" th:text="${#dates.format(group.updatedAt,'YYYY/MM/dd')}"></td>
+				<td class="text-nowrap text-center align-middle">
+					<a th:href="@{/group/{groupId}/stock/(groupId=${group.groupId})}" class="btn btn-info">詳細</a>
+					<a th:href="@{/group/{groupId}/stock/delete(groupId=${group.groupId})}" class="btn btn-danger">削除</a>
 				</td>
 			</tr>
 		</table>

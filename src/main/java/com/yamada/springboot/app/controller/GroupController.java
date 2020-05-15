@@ -42,7 +42,6 @@ public class GroupController {
 		model.addAttribute("groupList", groupList);
 		
 		return "login/homeLayout";
-		
 	}
 	
 	@GetMapping("/group")
@@ -133,7 +132,7 @@ public class GroupController {
 			System.out.println("OK");
 		} else {
 			System.out.println("NG");
-			return "redirect:/home";
+			return "redirect:/";
 		}
 		
 		try {

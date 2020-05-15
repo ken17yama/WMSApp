@@ -46,7 +46,6 @@ public class SignupController {
 		user.setRole("ROLE_GENERAL");
 
 		boolean result = userService.insertOne(user);
-
 		if(result == true) {
 			System.out.println("inset成功");
 		}else {

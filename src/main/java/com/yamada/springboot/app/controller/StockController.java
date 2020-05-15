@@ -65,7 +65,7 @@ public class StockController {
 			System.out.println("OK");
 		} else {
 			System.out.println("NG");
-			return "redirect:/home";
+			return "redirect:/";
 		}
 
 		model.addAttribute("contents", "login/stockList :: stockList_contents");
@@ -100,10 +100,8 @@ public class StockController {
 			System.out.println("OK");
 		} else {
 			System.out.println("NG");
-			return "redirect:/home";
+			return "redirect:/";
 		}
-
-		System.out.println("追加ボタンの処理");
 
 		Stock stock = new Stock();
 		stock.setStockName(form.getStockName());
@@ -143,7 +141,7 @@ public class StockController {
 			System.out.println("OK");
 		} else {
 			System.out.println("NG");
-			return "redirect:/home";
+			return "redirect:/";
 		}
 
 		model.addAttribute("contents", "login/stockEdit :: stockEdit_contents");
@@ -178,10 +176,8 @@ public class StockController {
 			System.out.println("OK");
 		} else {
 			System.out.println("NG");
-			return "redirect:/home";
+			return "redirect:/";
 		}
-
-		System.out.println("更新ボタンの処理");
 
 		Stock stock = new Stock();
 		stock.setStockId(stockId);
@@ -220,7 +216,7 @@ public class StockController {
 			System.out.println("OK");
 		} else {
 			System.out.println("NG");
-			return "redirect:/home";
+			return "redirect:/";
 		}
 
 		model.addAttribute("contents", "login/stockDelete :: stockDelete_contents");
@@ -248,10 +244,8 @@ public class StockController {
 			System.out.println("OK");
 		} else {
 			System.out.println("NG");
-			return "redirect:/home";
+			return "redirect:/";
 		}
-
-		System.out.println("削除ボタンの処理");
 		
 		try {
 			boolean result = stockService.deleteOne(stockId);

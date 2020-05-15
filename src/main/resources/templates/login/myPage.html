@@ -8,24 +8,32 @@
 <body>
 	<div th:fragment="myPage_contents">
 		<div class="page-header">
-			<h1>マイページ</h1>
+			<h3>マイページ</h3>
 		</div>
-		<table class="table table-bordered table-hover table-striped">
+		
+		<table th:object="${user}" class="table table-bordered table-hover">
 			<tr>
-				<th class="info">ユーザーID</th>
-				<th class="info">ユーザー名</th>
-				<th class="info">メールアドレス</th>
-				<th class="info">パスワード</th>
-				<th class="info">誕生日</th>
-				<th class="info">役割</th>
-			</tr>
-			<tr th:object="${user}">
+				<th class="table-dark text-nowrap text-center align-middle">ユーザーID</th>
 				<td th:text="*{userId}"></td>
+			</tr>
+			<tr>
+				<th class="table-dark text-nowrap text-center align-middle">ユーザー名</th>
 				<td th:text="*{userName}"></td>
+			</tr>
+			<tr>
+				<th class="table-dark text-nowrap text-center align-middle">メールアドレス</th>
 				<td th:text="*{mail}"></td>
-				<td th:text="*{password}"></td>
+			</tr>
+			<tr>
+				<th class="table-dark text-nowrap text-center align-middle">誕生日</th>
 				<td th:text="*{#dates.format(birthday,'YYYY/MM/dd')}"></td>
-				<td th:text="*{role}"></td>
+			</tr>
+			<tr>
+				<th class="table-dark text-nowrap text-center align-middle">ロール</th>
+				<td th:switch="*{role}">
+					<p th:case="ROLE_ADMIN" class="mb-0">システム管理者</p>
+					<p th:case="ROLE_GENERAL" class="mb-0">一般ユーザー</p>
+				</td>
 			</tr>
 		</table>
 		<p>

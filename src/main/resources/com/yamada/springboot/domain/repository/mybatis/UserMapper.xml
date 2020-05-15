@@ -31,7 +31,17 @@
 	
 	<select id="selectOne"
 	parameterType="string" resultType="com.yamada.springboot.domain.model.User">
-		SELECT user_id AS userId, user_name AS userName, mail, birthday, role, my_place AS myPlace FROM users WHERE mail = #{mail}
+		SELECT user_id AS userId, user_name AS userName, mail, password, birthday, role, my_place AS myPlace FROM users WHERE mail = #{mail}
+	</select>
+	
+	<select id="selectOnePassword"
+	parameterType="string" resultType="String">
+		SELECT password FROM users WHERE mail = #{mail}
+	</select>
+	
+	<select id="selectOneId"
+	parameterType="string" resultType="int">
+		SELECT user_id AS userId FROM users WHERE mail = #{mail}
 	</select>
 	
 	<update id="editPlace">
@@ -41,5 +51,9 @@
 	<delete id="deleteOne" parameterType="string">
 		DELETE FROM users WHERE mail = #{mail}
 	</delete>
+	
+	<update id="updateOne" parameterType="com.yamada.springboot.domain.model.User">
+		UPDATE users SET user_name = #{userName}, mail = #{mail}, password = #{password}, birthday = #{birthday} WHERE user_id = #{userId};
+	</update>
 
 </mapper>

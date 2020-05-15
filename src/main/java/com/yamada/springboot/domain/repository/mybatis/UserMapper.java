@@ -16,9 +16,15 @@ public interface UserMapper {
 	public List<User> selectMany();
 
 	public User selectOne(String mail);
+
+	public Integer selectOneId(String mail);
+
+	public String selectOnePassword(String mail);
 	
 	public boolean editPlace(String mail, String myPlace);
 
 	public boolean deleteOne(String mail);
+	
+	public boolean updateOne(User user);
 
 }
