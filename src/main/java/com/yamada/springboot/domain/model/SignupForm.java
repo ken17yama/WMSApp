@@ -15,21 +15,21 @@ import lombok.Data;
 public class SignupForm {
 
 	//	ユーザー名
-	@NotBlank
+	@NotBlank(message="{require_check}")
 	private String userName;
 
 	//	メールアドレス
-	@NotBlank
-	@Email
+	@NotBlank(message="{require_check}")
+	@Email(message="{email_check}")
 	private String mail;
 
 	//	パスワード
-	@NotBlank
-	@Pattern(regexp="^[a-zA-Z0-9]+$")
+	@NotBlank(message="{require_check}")
+	@Pattern(regexp="^[a-zA-Z0-9]{8,}", message="{pattern_check}")
 	private String password;
 
 	//	誕生日
-	@NotNull
+	@NotNull(message="{require_check}")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 

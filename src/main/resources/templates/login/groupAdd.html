@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-	<meta charset="UTF-8">
+<meta charset="UTF-8">
 </head>
 
 <body>
@@ -13,21 +14,28 @@
 		<form method="post" th:action="@{''}" th:object="${groupForm}">
 			<table class="table table-bordered table-hover">
 				<tr>
-					<th class="table-dark text-nowrap text-center align-middle"><label for="">グループ名</label></th>
-					<td class="form-group"><input type="text" class="form-control" th:field="*{groupName}"></td>
+					<th class="table-dark text-nowrap text-center align-middle"><label
+						for="">グループ名</label></th>
+					<td class="form-group"><input type="text" class="form-control"
+						required th:field="*{groupName}"></td>
 				</tr>
 				<tr>
-					<th class="table-dark text-nowrap text-center align-middle"><label for="">ユーザー（メールアドレス）</label></th>
+					<th class="table-dark text-nowrap text-center align-middle"><label
+						for="">ユーザー（メールアドレス）</label></th>
 					<td class="form-group">
 						<div>
-							<input class="testNo" type="text" th:field="*{groupList[0]}" />
+							<input class="testNo" type="text" required readonly
+								th:field="*{groupList[0]}" th:value="${mail}" />
 						</div>
-						<div id="piyo"></div>
-						<a href="#" id="addInput" tabIndex="-1">＋追加</a>
+						<div id="additional"></div> <a href="javascript:void(0)"
+						id="addInput" class="btn btn-link">＋追加</a> <a
+						href=javascript:void(0) id="removeInput" class="btn btn-link">-削除</a>
+
 					</td>
 				</tr>
 			</table>
-			<button class="btn btn-primary btn-lg pull-right" type="submit" name="post">追加</button>
+			<button class="btn btn-primary btn-lg pull-right" type="submit"
+				name="post">追加</button>
 		</form>
 		<script>
 			function add() {
@@ -36,18 +44,26 @@
 				input.setAttribute("type", "text");
 				input.setAttribute("id", "groupList" + inputCount);
 				input.setAttribute("class", "testNo");
+				input.setAttribute("required", "");
 				input.setAttribute("name", "groupList[" + inputCount + "]")
 				input.setAttribute("value", "");
 				var ele = document.createElement("div");
 				ele.appendChild(input);
-				document.getElementById("piyo").appendChild(ele);
+				document.getElementById("additional").appendChild(ele);
 			}
-			document.getElementById("addInput").addEventListener("click", function (e) {
-				console.log(
-					"click"
-				);
-				add();
-			}, false);
+			function remove() {
+				var ele = document.querySelector('#additional div:last-child');
+				ele.remove();
+			}
+			document.getElementById("addInput").addEventListener("click",
+					function(e) {
+						add();
+					}, false);
+			document.getElementById("removeInput").addEventListener("click",
+					function(e) {
+
+						remove();
+					}, false);
 		</script>
 	</div>
 </body>

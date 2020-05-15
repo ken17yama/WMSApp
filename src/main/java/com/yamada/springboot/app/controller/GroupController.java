@@ -47,7 +47,7 @@ public class GroupController {
 	@GetMapping("/group")
 	public String getGroupList(Model model, Principal principal) {
 		model.addAttribute("contents", "login/groupList :: groupList_contents");
-		
+
 		//	ユーザーの情報をusersテーブルから取り出し、対象のplaceがあるかを確認
 		String mail = principal.getName();
 		User user = userService.selectOne(mail);
@@ -63,9 +63,14 @@ public class GroupController {
 	}
 
 	@GetMapping("/group/add")
-	public String getGroupAdd(@ModelAttribute GroupForm form, Model model) {
+	public String getGroupAdd(@ModelAttribute GroupForm form, Model model, Principal principal) {
 
 		model.addAttribute("contents", "login/groupAdd :: groupAdd_contents");
+		
+		List<String> list = Arrays.asList(principal.getName());
+		form.setGroupList(list);
+		
+		model.addAttribute("mail", principal.getName());
 
 		return "login/homeLayout";
 
@@ -89,16 +94,22 @@ public class GroupController {
 			System.out.println("追加成功");
 
 			List<String> mailList = form.getGroupList();
-			if(!mailList.contains(principal.getName())) {
-				mailList.add(principal.getName());
-			}
+			
 
 			for(String mail : mailList){
 				User user = userService.selectOne(mail);
-				List<String> myPlaceStrList = new ArrayList<>(Arrays.asList(user.getMyPlace().split(",")));
-				List<Integer> myPlaceIntList = myPlaceStrList.stream().map(e -> Integer.valueOf(e)).collect(Collectors.toList());
-				myPlaceIntList.add(place);
+				
+				System.out.println(user);
+				
+				List<String> myPlaceStrList = new ArrayList<>();
+				List<Integer> myPlaceIntList = new ArrayList<>();
 
+				if(user.getMyPlace() != null) {
+					myPlaceStrList = Arrays.asList(user.getMyPlace().split(","));
+					myPlaceIntList = myPlaceStrList.stream().map(e -> Integer.valueOf(e)).collect(Collectors.toList());
+				}
+				
+				myPlaceIntList.add(place);
 				myPlaceStrList = myPlaceIntList.stream().map(e -> String.valueOf(e)).collect(Collectors.toList());
 
 				String myPlaceStr = String.join(",", myPlaceStrList);

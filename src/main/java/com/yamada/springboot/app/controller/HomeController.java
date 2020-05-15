@@ -87,9 +87,7 @@ public class HomeController {
 		model.addAttribute("contents", "login/myPage :: myPage_contents");
 		
 		String mail = principal.getName();
-		System.out.println(mail);
 		User user = userService.selectOne(mail);
-		System.out.println(user);
 		model.addAttribute("user", user);
 
 		return "login/homeLayout";
@@ -98,7 +96,6 @@ public class HomeController {
 	@GetMapping("/mypage/edit")
 	public String getMypageEdit(@ModelAttribute UserEditForm form, Principal principal, Model model) {
 		String mail = principal.getName();
-		System.out.println(mail);
 		model.addAttribute("contents", "login/myPageEdit :: myPageEdit_contents");
 		if(mail != null) {
 			User user = userService.selectOne(mail);
