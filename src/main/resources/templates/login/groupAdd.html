@@ -24,7 +24,7 @@
 						for="">ユーザー（メールアドレス）</label></th>
 					<td class="form-group">
 						<div>
-							<input class="testNo" type="text" required readonly
+							<input class="testNo form-control" type="text" required readonly
 								th:field="*{groupList[0]}" th:value="${mail}" />
 						</div>
 						<div id="additional"></div> <a href="javascript:void(0)"
@@ -43,7 +43,7 @@
 				var input = document.createElement("input");
 				input.setAttribute("type", "text");
 				input.setAttribute("id", "groupList" + inputCount);
-				input.setAttribute("class", "testNo");
+				input.setAttribute("class", "testNo form-control");
 				input.setAttribute("required", "");
 				input.setAttribute("name", "groupList[" + inputCount + "]")
 				input.setAttribute("value", "");

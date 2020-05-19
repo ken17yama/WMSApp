@@ -23,11 +23,12 @@
 				<div class="navbar-header">
 					<a href="/" class="navbar-brand text-white">在庫管理くん</a>
 				</div>
-				<p class="mb-0 text-white">サンプルですのでデータが消える恐れがあります。</p>
 				<form method="post" th:action="@{'/logout'}">
+					<a href="/mypage" type="submit" class="btn btn-info text-nowrap">マイページ</a>
 					<button class="btn btn-secondary">ログアウト</button>
 				</form>
 			</div>
+				<p class="mb-0 text-white">サンプルですのでデータが消える恐れがあります。</p>
 		</nav>
 
 		<div class="sidebar">

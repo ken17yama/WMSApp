@@ -2,15 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
+<meta charset="UTF-8">
 
-	<link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" rel="stylesheet">
-	<script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
-	<script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+<link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}"
+	rel="stylesheet">
+<script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 
-	<link th:href="@{/css/home.css}" rel="stylesheet">
+<link th:href="@{/css/home.css}" rel="stylesheet">
 
-	<title>ログイン</title>
+<title>ログイン</title>
 </head>
 
 <body class="d-flex flex-column">
@@ -19,30 +20,37 @@
 		<nav class="navbar">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a href="/" class="navbar-brand text-white">Spring Sample</a>
+					<a href="/" class="navbar-brand text-white">在庫管理くん</a>
 				</div>
 				<p class="mb-0 text-white">サンプルですのでデータが消える恐れがあります。</p>
 			</div>
 		</nav>
-		<div class="sidebar container-fluid pt-5">
-		</div>
+		<div class="sidebar container-fluid pt-5"></div>
 		<div class="main container-fluid pt-3">
-			<h3>ログイン</h3>
-			<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
-				th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" class="text-danger">ログインエラーメッセージ</p>
-			<form method="post" th:action="@{'/login'}">
-				<div class="form-group col-sm-5">
-					<label for="mail">メールアドレス</label> <input type="text" name="mail" class="form-control" placeholder="メールアドレス">
+			<div class="card mx-auto col-12 col-lg-5">
+				<div class="card-body">
+					<h3>ログイン</h3>
+					<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+						th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+						class="text-danger">ログインエラーメッセージ</p>
+					<form method="post" th:action="@{'/login'}">
+						<div class="form-group">
+							<label for="mail">メールアドレス</label> <input type="text" name="mail"
+								class="form-control form-control-lg border-0"
+								placeholder="メールアドレス" style="background-color: #E8F0FE;">
+						</div>
+						<div class="form-group">
+							<label for="password">パスワード</label> <input type="password"
+								name="password" class="form-control form-control-lg border-0"
+								placeholder="パスワード" style="background-color: #E8F0FE;">
+						</div>
+						<div class="d-flex justify-content-around align-items-center mt-4">
+							<button type="submit" class="btn btn-primary text-nowrap col-6">ログイン</button>
+							<a th:href="@{'/signup'}" class="btn btn-link text-nowrap col-6">新規登録はこちら</a>
+						</div>
+					</form>
 				</div>
-				<div class="form-group col-sm-5">
-					<label for="password">パスワード</label> <input type="password" name="password" class="form-control"
-						placeholder="パスワード">
-				</div>
-				<button type="submit" class="btn btn-primary">ログイン</button>
-			</form>
-			<p class="mt-3">
-				<a th:href="@{'/signup'}">新規登録はこちら</a>
-			</p>
+			</div>
 		</div>
 	</div>
 </body>
